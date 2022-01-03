@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 
@@ -52,6 +52,9 @@ function App() {
 
     }
   ]);
+  useEffect(() => {
+    alert('welcome');
+  }, []);
   const addTodo = text => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
