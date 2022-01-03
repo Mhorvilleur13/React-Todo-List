@@ -13,7 +13,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
     </div>
   )
 }
-// test
+// Felix is the best
 function TodoForm({ addTodo }) {
   const [value, setValue] = useState('');
   const handleSubmit = e => {
