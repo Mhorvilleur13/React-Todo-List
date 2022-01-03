@@ -53,7 +53,7 @@ function App() {
     }
   ]);
   useEffect(() => {
-    alert('welcome');
+    console.log('On Mount')
   }, []);
   const addTodo = text => {
     const newTodos = [...todos, { text }];
