@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 
 
 function Todo({ todo, index, completeTodo, removeTodo }) {
@@ -13,7 +14,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
     </div>
   )
 }
-// Felix is the best
+
 function TodoForm({ addTodo }) {
   const [value, setValue] = useState('');
   const handleSubmit = e => {
@@ -34,16 +35,7 @@ function TodoForm({ addTodo }) {
   )
 }
 
-/*function TodoCount({ todos }) {
-  const [count, setCount] = useState(0);
-  setCount(Object.keys(todos).length);
-  console.log({ count });
-  return (
-    <div>
-      <h1> {count} </h1>
-    </div>
-  )
-}*/
+
 
 function TodoCount({ count, addToCount }) {
   addToCount();
@@ -54,27 +46,26 @@ function TodoCount({ count, addToCount }) {
   )
 }
 
+const todoState = atom({
+  key: 'todoState',
+  default: [{
+    text: 'annoy Felix',
+    isCompleted: false
+  }
+  ]
+});
+
+const todoCountState = atom({
+  key: 'todoCountState',
+  default: []
+})
+
+
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      text: 'Learn about React',
-      isCompleted: false
 
-    },
-    {
-      text: 'Annoy Felix with a million Questions',
-      isCompleted: false
+  const [todos, setTodos] = useRecoilState(todoState);
 
-    },
-    {
-      text: 'Throw my computer',
-      isCompleted: false
-
-    }
-  ]);
-
-  const [count, setCount] = useState(3);
-
+  const [count, setCount] = useRecoilState(todoCountState);
 
   useEffect(() => {
     console.log('On Mount')
